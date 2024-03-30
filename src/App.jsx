@@ -16,38 +16,3 @@ function App() {
 }
 
 export default App;
-
-// const [search, setSearch] = useState("");
-
-// const [contacts, setContacts] = useState(() => {
-//   const stringifiedContacts = localStorage.getItem("contacts");
-//   if (!stringifiedContacts) return initialContacts;
-
-//   const parsedContacts = JSON.parse(stringifiedContacts);
-//   return parsedContacts;
-// });
-
-// useEffect(() => {
-//   localStorage.setItem("contacts", JSON.stringify(contacts));
-// }, [contacts]);
-
-// const onAddContact = (newContact) => {
-//   const finalContact = {
-//     ...newContact,
-//     id: nanoid(),
-//   };
-
-//   setContacts((prevContacts) => {
-//     return [...prevContacts, finalContact];
-//   });
-// };
-
-// const onDeleteContact = (contactId) => {
-//   setContacts((prevContacts) => {
-//     return prevContacts.filter((contact) => contact.id !== contactId);
-//   });
-// };
-
-// const filteredContacts = contacts.filter((contact) =>
-//   contact.name.toLowerCase().includes(search.toLowerCase())
-// );
