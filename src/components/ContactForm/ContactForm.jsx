@@ -1,18 +1,24 @@
 import { Field, Form, Formik } from "formik";
-import * as Yup from "yup";
 import { ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
+
 import css from "./ContactForm.module.css";
 
 const PhonebookSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "User name must have at least 3 characters!")
     .max(50, "User name must be less than 50 characters!")
-    .required("User name is required!"),
+    .required("Name is required!"),
   number: Yup.string()
-    .matches(/^[0-9()+\- ]+$/, "The number must contain only digits!")
-    .min(7, "The number must contain at least 5 digits!")
+    .matches(
+      /^\d{3}-\d{2}-\d{2}$/,
+      "Invalid phone number format (e.g. 123-45-67)"
+    )
+    .min(7, "The number must contain at least 7 digits!")
     .max(15, "The number must contain no more than 15 characters!")
-    .required("The field is required!"),
+    .required("Number is required!"),
 });
 
 const INITIAL_FORM_DATA = {
@@ -20,9 +26,11 @@ const INITIAL_FORM_DATA = {
   number: "",
 };
 
-const ContactForm = ({ onAddContact }) => {
-  const handleSubmit = (contactData, formActions) => {
-    onAddContact(contactData);
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, formActions) => {
+    dispatch(addContact(values));
     formActions.resetForm();
   };
 
