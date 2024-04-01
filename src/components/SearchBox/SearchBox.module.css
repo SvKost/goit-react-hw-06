@@ -1,8 +1,8 @@
 .searchBox {
   display: flex;
   flex-direction: column;
-  max-width: 25em;
-  width: 100%;
+  min-width: 256px;
+  max-width: 300px;
   margin-bottom: 20px;
 }
 
